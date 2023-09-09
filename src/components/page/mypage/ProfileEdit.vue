@@ -103,6 +103,7 @@
       </div>
     </section>
 
+    <!--자기소개-->
     <section class="edit-page" :class="{open:isIntro}"  :style="`height:${this.winH - 150 }px`">
       <div class="top-btns type2">
         <a class="back" @click="close('intro')">닫기</a>
@@ -116,6 +117,33 @@
         <span>{{msg.length}}/80</span>
       </div>
     </section>
+
+
+    <!--나이대-->
+    <section class="edit-page" :class="{open:isSelect}"  :style="`height:${this.winH - 150 }px`">
+      <div class="top-btns type1">
+        <a class="close">닫기</a>
+        <h3>회원님의 나이대를 알려주세요</h3>
+      </div>
+
+      <div class="edit-inner">
+        <ul>
+          <li >
+            <label>
+              <input type="radio" :name="age">
+              <i></i>
+              <span>{{}}대</span>
+            </label>
+          </li>
+        </ul>
+        <label>
+          <input type="radio" :name="age">
+          <i></i>
+          <span>직접입력</span>
+        </label>
+      </div>
+    </section>
+
   </div>
 </template>
 
@@ -131,8 +159,10 @@ export default {
       counter: 0,
       isDim: false,
       isIntro: false,
+      isSelect: true,
       winH: 0,
       msg: '',
+      age: [],
     }
   },
   mounted() {
@@ -176,6 +206,9 @@ export default {
   .top-btns h3 { line-height: 53px; }
   .top-btns a { font-size: 14px; line-height: 53px; font-weight: 500; }
   .top-btns a.back { font-size: 0; width:65px; height:53px; position: relative; }
+  .top-btns.type1 { height:auto; display: block; text-align: right; padding: 20px 10px 20px 20px; box-sizing: border-box; }
+  .top-btns.type1 h3 { line-height: 25px; display: block; text-align: left; }
+  .top-btns.type1 a.close { font-size: 0; width: 45px; height:45px; background: url("~@/assets/images/mypage/ico-x.png")0 0 no-repeat; background-size: contain; }
   .top-btns a.back:after { content: ''; width:25px; height:29px; background: url("~@/assets/images/mypage/ico-back.png")0 0 no-repeat; background-size: contain; position: absolute; left:20px; top:12px; }
   .top-btns a.edit { text-decoration: underline; padding-right: 20px; box-sizing: border-box; }
   .wrap { padding: 30px 20px; box-sizing: border-box; background: rgba(251,251,251,0.9); }
@@ -195,14 +228,13 @@ export default {
 
   .profile-list { margin-top:65px; }
   .profile-list li { padding: 30px 0; box-sizing: border-box; border-bottom: 1px solid #F5F5F5; position: relative; }
-  .profile-list li a { width: 100%; height:100%; position: absolute; left:0; top:0; }
   .profile-list li:first-child { padding-top: 0; }
   .profile-list li h3 { margin-bottom:15px; }
   .profile-list li .txt { font-size: 14px; line-height: 20px; color:#808080; margin-bottom: 15px; }
   .profile-list li .intro { border: 1px dashed; border-color: var(--color-main); color:#606060; padding: 13px 12px; box-sizing: border-box; border-radius: 5px; position: relative; }
   .profile-list li .intro .txt { line-height: 24px; margin-bottom: 0; }
   .profile-list li .intro b { font-size: 16px; font-weight: 500; color:#606060; text-decoration: underline; }
-  .profile-list li .intro a { cursor: pointer; position: absolute; left:0; top:0; }
+  .profile-list li .intro a { cursor: pointer; position: absolute; left:0; top:0; width: 100%; height:100%; }
   .profile-list .pr { padding-left: 55px }
   .profile-list .pr i, .profile-list .pr p { color:#606060; font-weight: 500; display: inline-block; vertical-align: middle; }
   .profile-list .type1:after { content:''; width:12px; height:22px; background: url("~@/assets/images/mypage/ico-arrow.png")0 0 no-repeat; background-size: contain; position: absolute; right:0; top:50%; transform: translateY(-50%); pointer-events: none; }
