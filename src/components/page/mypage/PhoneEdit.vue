@@ -152,7 +152,7 @@ export default {
   .phone-cert .wrap .inp-wrap .code-send { color:#101014; border-bottom: 1px solid; border-color: #101014; margin-left: 8px; }
 
   .edit-page { position: fixed; left:0; bottom:0; width:100%; height:100%; z-index: 10; background: #fff; transform: translateY(100%); transition: transform 0.5s; animation-timing-function: ease-out;  border-top-left-radius: 25px; border-top-right-radius: 25px; }
-  .btn-wrap { width: 100%; position: absolute; left:0; bottom: 65px; text-align: center; }
+  .btn-wrap { width: 100%; position: absolute; left:0; bottom: 30px; text-align: center; }
   .btn { font-size: 20px; font-weight: 500; text-align: center; border: 1px solid; border-color: var(--color-main); line-height: 44px; padding: 0 100px; box-sizing: border-box; border-radius: 23px; cursor:pointer; }
   .edit-page.open { transform: translateY(0); }
   .dimOpen .dim { opacity:0.5; z-index: 5; }

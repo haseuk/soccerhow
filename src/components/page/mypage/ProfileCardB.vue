@@ -1,12 +1,12 @@
 <template>
-  <div profile-card>
-
-    <section class="profile-intro">
+  <div profile-card-b>
+    <div class="top-cont">
       <div class="top-btns">
         <h3>프로필 카드</h3>
         <RouterLink to="/mypage-main" class="back">닫기</RouterLink>
       </div>
-
+    </div>
+    <section class="profile-intro">
       <div class="wrap">
         <div class="profile cont-wrap" :class="{open:isOpen}">
           <div class="cont-top">
@@ -161,7 +161,7 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.min.css'
 
 export default {
-  name: "ProfileCard",
+  name: "ProfileCardB",
   components : {swiper, swiperSlide},
   data() {
     return {
@@ -247,9 +247,12 @@ export default {
   .cont-wrap:last-child { margin-bottom: 0; }
   .cont-wrap .cont-top h4 { font-size: 16px; line-height: 23px; font-weight: 500; margin-bottom: 20px; text-align: left; }
 
-  .profile-intro .top-btns { height: 66px; border-bottom: 1px solid; border-color: #F5F5F5; text-align: center; position: relative; }
-  .profile-intro .top-btns h3 { line-height: 66px; }
-  .profile-intro .top-btns .back { font-size:0; width: 45px; height:45px; position: absolute; right: 15px; top: 15px; background: url("~@/assets/images/mypage/ico-x.png")0 0 no-repeat; background-size: contain; }
+  .top-cont { width: 100%; position: fixed; left:0; top:0; background: #fff; z-index: 1; }
+  .top-cont .top-btns { height: 66px; border-bottom: 1px solid; border-color: #F5F5F5; text-align: center; position: relative; }
+  .top-cont .top-btns h3 { line-height: 66px; }
+  .top-cont .top-btns .back { font-size:0; width: 45px; height:45px; position: absolute; right: 15px; top: 15px; background: url("~@/assets/images/mypage/ico-x.png")0 0 no-repeat; background-size: contain; }
+
+  .profile-intro { margin-top: 64px; }
   .profile-intro .wrap { padding: 30px 20px; box-sizing: border-box; background: rgba(251,251,251,0.9); }
   .profile-intro .profile { text-align: center; padding: 0 0 10px 0; box-sizing: border-box; }
   .profile-intro .profile .cont-top { padding: 30px 20px 20px 20px; box-sizing: border-box; }

@@ -1,88 +1,198 @@
 <template>
-  <div mypage-main>
+  <div profile-card-a>
     <div class="top-cont">
-      <h2>마이페이지</h2>
+      <div class="top-btns">
+        <RouterLink class="back" to="/mypage_main">뒤로가기 </RouterLink>
+        <RouterLink to="" class="edit">프로필 수정</RouterLink>
+      </div>
     </div>
-    <section class="mypage-main">
+
+    <section class="profile-intro">
       <div class="wrap">
-        <div class="main-profile">
-          <div class="thumb"><img src="~@/assets/images/mypage/thumb-xs.png" alt=""></div>
-          <div class="nick-wrap">
-            <p class="nick">{{naming.nick}}</p>
-            <p class="pos">{{naming.pos}}</p>
-            <span class="mark"><img src="@/assets/images/mypage/feCheckVerified0.png" alt=""></span>
-            <RouterLink to="/profile_card_a" class="profile-intro-link">프로필 카드 보기 <img src="~@/assets/images/mypage/ico-profile-arrow.png" alt=""></RouterLink>
+        <div class="profile cont-wrap" :class="{open:isOpen}">
+          <div class="cont-top">
+            <h4>프로필 소개</h4>
+            <div class="thumb"><img :src="require(`@/assets/images/mypage/${thumbSrc}.png`)" alt=""></div>
+            <div class="naming">
+              <p class="nick">{{naming.nick}}</p>
+              <p class="pos">{{naming.pos}}</p>
+              <span class="mark"><img :src="require(`@/assets/images/mypage/${markSrc}.png`)" alt=""></span>
+            </div>
+            <p class="intro">{{intro}}</p>
+          </div>
+          <div class="info">
+            <ul>
+              <li v-for="(info, i) in infoList" :key="info" :class="i">
+                <img :src="require(`@/assets/images/mypage/ico-${i}.png`)" alt="">
+                <p>{{info}}</p>
+              </li>
+            </ul>
+            <div class="skill">
+              <img src="@/assets/images/mypage/ico-skill.png" alt="">
+              <div class="skill-cont">
+                <p class="specialty">주특기: {{skill.specialty}}</p>
+                <p class="play-style">플레이 스타일: {{skill.playStyle}}</p>
+              </div>
+            </div>
+          </div>
+          <a class="toggle" @click="infoToggle">펼치기</a>
+        </div>
+
+        <div class="hobby cont-wrap">
+          <div class="cont-top">
+            <h4>내가 참여중인 조인</h4>
+            <p class="sub-tit">{{hobbyList.length}}개의 조인에 참여중</p>
+            <ul class="list">
+              <li v-for="(hobby, i) in hobbyList" :key="i">
+                <div class="thumb"><img :src="require(`@/assets/images/mypage/${hobby.img}.png`)" alt=""></div>
+                <div class="cont">
+                  <p class="tit">{{hobby.tit}}</p>
+                  <p class="person">{{hobby.person}}명</p>
+                  <p class="add">{{hobby.add}}</p>
+                  <p class="tag">
+                    <span v-for="(tag, i) in hobby.tags" :key="i">{{tag}}</span>
+                  </p>
+                </div>
+                <RouterLink to="" class="hobby-link"/>
+              </li>
+            </ul>
           </div>
         </div>
-        <ul class="badge">
-          <li v-for="(badge, i) in badgeList" :key="i">
-            <img :src="require(`@/assets/images/mypage/ico-${badge.img}.png`)" alt="">
-            <p>{{badge.tit}}</p>
-          </li>
-        </ul>
 
-        <div class="p-list alarm-wrap">
-          <h3 class="news">알림센터 <i></i></h3><!--새로운정보 있는 항목에 news 클래스 추가되면 주황색 표시 노출됨 -->
-          <ul class="alarm-list">
-            <li v-for="(alarm, i) in alarmList" :key="i">
-              <RouterLink :to="alarm.link"><span class="news">{{alarm.tit}}</span></RouterLink>
-            </li>
-          </ul>
+        <div class="history cont-wrap">
+          <div class="cont-top">
+            <h4>나의 조인/용병 활동</h4>
+            <ul>
+              <li>용병 횟수 : {{history[0]}}건</li>
+              <li>스카웃 활동 : {{history[1]}}건</li>
+              <li>조인 스케줄 참여 : {{history[2]}}회</li>
+            </ul>
+          </div>
         </div>
 
-        <div class="p-list preferences-wrap" >
-          <h3>환경설정 <i></i></h3>
-          <ul class="preferences">
-            <li v-for="(preferences, i) in preferencesList" :key="i">
-              <RouterLink :to="preferences.link"><span>{{preferences.tit}}</span></RouterLink>
-            </li>
-          </ul>
+        <div class="evaluation cont-wrap">
+          <div class="cont-top">
+            <h4>내가 받은 역대 평가</h4>
+          </div>
+          <swiper class="hex-swiper" ref="filterSwiper" :options="swiperOption" role="tablist" @slideChange="detectSlideChanged">
+            <swiper-slide role="tab" v-for="(eva, i) in evaluation" :key="i" >
+              <img :src="require(`@/assets/images/mypage/${eva.img}.png`)" alt="" class="hex">
+              <ul class="data">
+                <li>
+                  <i><img :src="require(`@/assets/images/mypage/ico-${eva.img}.png`)" alt=""></i>
+                  <p>{{eva.tit}} <b>{{eva.pt}}개</b></p>
+                </li>
+                <li>
+                  <p>{{eva.tit2}} <b>{{eva.num}}회</b></p>
+                </li>
+              </ul>
+            </swiper-slide>
+          </swiper>
+          <div class="swiper-button-next swiper-btn">이전</div>
+          <div class="swiper-button-prev swiper-btn">다음</div>
         </div>
 
-        <div class="p-list customer-wrap" >
-          <h3>고객센터 <i></i></h3>
-          <ul class="customer">
-            <li v-for="(customer, i) in customerList" :key="i">
-              <RouterLink :to="customer.link"><span>{{customer.tit}}</span></RouterLink>
-            </li>
-          </ul>
+        <div class="how cont-wrap">
+          <div class="cont-top">
+            <h4>나의 사커하우</h4>
+            <ul>
+              <li>
+                <i><img src="~@/assets/images/mypage/ico-how1.png" alt=""></i>
+                <p>누구나 답변: {{howAnswer[0]}}개</p>
+              </li>
+              <li>
+                <i><img src="~@/assets/images/mypage/ico-how2.png" alt=""></i>
+                <p>코치만 답변 : {{howAnswer[1]}}개</p>
+              </li>
+              <li>
+                <i><img src="~@/assets/images/mypage/ico-how3.png" alt=""></i>
+                <p>빠른 답변 : {{howAnswer[2]}}개</p>
+              </li>
+              <li>
+                <i><img src="~@/assets/images/mypage/ico-how4.png" alt=""></i>
+                <p>작성한 댓글 : {{howAnswer[3]}}개</p>
+              </li>
+            </ul>
+          </div>
         </div>
+
+        <div class="mission cont-wrap">
+          <div class="cont-top">
+            <h4>나의 미션</h4>
+            <h4>완료한 미션 <b>{{mission.length}}</b></h4>
+            <ul>
+              <li v-for="(miss, i) in mission" :key="i" >
+                <i><img :src="require(`@/assets/images/mypage/ico-${miss}.png`)" alt=""></i>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="interest cont-wrap">
+          <div class="cont-top">
+            <p class="tit">나의 관심 분야</p>
+            <ul class="interest-list">
+              <li v-for="(interest, i) in interestList" :key="i">{{interest}}</li>
+            </ul>
+
+            <p class="tit">사커하우 이용 목적</p>
+            <ul class="purpose-list">
+              <li v-for="(purpose, i) in purposeList" :key="i">{{purpose}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="btt-text">
+        <p>위 프로필은 모두 직접 설정한 내용이며,<br> 사실과 다르지 않습니다.</p>
+        <RouterLink to="" >프로필 신고</RouterLink>
       </div>
     </section>
   </div>
 </template>
 
 <script>
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.min.css'
+
 export default {
-  name: "MyPageMain",
+  name: "ProfileCardA",
+  components : {swiper, swiperSlide},
   data() {
     return {
       naming: {
         nick: '감자튀김볶음밥', pos:'CF'
       },
-      badgeList: [
-        {img:'c1', tit: '수업'},
-        {img:'c2', tit: '포인트'},
-        {img:'c3', tit: '미션'}
-      ],
-      alarmList: [
-        {tit: '알람', link:'/alarm' },
-        {tit: '채팅', link:'/' }
-      ],
-      preferencesList: [
-        {tit: '개인정보', link: '/privacy'},
-        {tit: '프로필 수정', link: '/profile_edit'},
-        {tit: '로그인/보안', link: ''},
-        {tit: '결제수단 등록', link: ''},
-        {tit: '알림 설정', link: ''}
-      ],
-      customerList: [
-        {tit: '이벤트', link: ''},
-        {tit: '공지사항', link: ''},
-        {tit: '피드백/문의', link: ''},
-        {tit: '신고 내역', link: ''},
-      ],
 
+      thumbSrc: 'thumb',
+      markSrc: 'feCheckVerified0',
+      intro: '축구 잘하는 20대 남자입니다. 같이 할 사람 언제나 환영합니다',
+      infoList: { age: '20대', height: '175cm', cm: 'CM', foot: '왼발', point: '1,230,230,200', add: '서울시 마포구' },
+      skill: { specialty: '스탭오버, 킬패스', playStyle: '인버티드 윙어, 크랙' },
+      isOpen: false,
+      hobbyList: [
+        {img:'thumb2', tit: '자동문 축구단', person: '13', add: '마포구 공덕동', },
+        {img:'thumb3', tit: '리버풀 응원방', person: '67', add: '마포구 공덕동', tags: ['#유소년', '#팬클럽', '#친목']}
+      ],
+      history: [2, 1, 6],
+
+      evaluation:[
+        {img: 'eva1', tit: '매너', pt: 2, tit2: '매너 플레이어', num: 0},
+        {img: 'eva2', tit: '팀워크', pt: 10, tit2: '커뮤니케이터', num: 4},
+        {img: 'eva3', tit: '실력', pt: 7, tit2: '실력', num: 1}
+      ],
+      howAnswer: [2,1,5,16],
+      mission: ['ms1', 'ms2', 'ms3', 'ms4', 'ms5', 'ms6', 'ms7'],
+      interestList: ['국내축구', '축구 밈/유머'],
+      purposeList: ['스터디', '축구 경기 관람'],
+
+
+      swiperOption: {
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      },
     }
   },
 
@@ -91,6 +201,9 @@ export default {
       this.isOpen = !this.isOpen
     },
 
+    detectSlideChanged() {
+      console.log(this.$refs.filterSwiper.swiper.realIndex);
+    },
   }
 }
 </script>
@@ -126,15 +239,16 @@ export default {
   .mypage-main .news:after { content:''; width: 5px; height:5px; background: var(--color-main); border-radius: 50%; position: absolute; right:0; top:4px; }
 
   .top-cont { width: 100%; position: fixed; left:0; top:0; background: #fff; z-index: 1; }
+  .top-cont .top-btns { height: 60px; display: flex; justify-content: space-between; border-bottom: 1px solid; border-color: #F5F5F5; padding-top: 7px; box-sizing: border-box;  }
+  .top-cont .top-btns a { font-size: 14px; line-height: 53px; font-weight: 500; }
+  .top-cont .top-btns a.back { font-size: 0; width:65px; height:53px; position: relative; }
+  .top-cont .top-btns a.back:after { content: ''; width:25px; height:29px; background: url("~@/assets/images/mypage/ico-back.png")0 0 no-repeat; background-size: contain; position: absolute; left:20px; top:12px; }
+  .top-cont .top-btns a.edit { text-decoration: underline; padding-right: 20px; box-sizing: border-box; }
 
   .cont-wrap { padding:30px 20px; box-sizing: border-box; border-radius: 20px; background: rgba(255,255,255,1); box-shadow: 0 5px 10px 0 rgba(16, 16, 20, 0.2); margin-bottom: 30px; }
   .cont-wrap:last-child { margin-bottom: 0; }
   .cont-wrap .cont-top h4 { font-size: 16px; line-height: 23px; font-weight: 500; margin-bottom: 20px; text-align: left; }
-  .profile-intro .top-btns { height: 60px; display: flex; justify-content: space-between; border-bottom: 1px solid; border-color: #F5F5F5; padding-top: 7px; box-sizing: border-box;  }
-  .profile-intro .top-btns a { font-size: 14px; line-height: 53px; font-weight: 500; }
-  .profile-intro .top-btns a.back { font-size: 0; width:65px; height:53px; position: relative; }
-  .profile-intro .top-btns a.back:after { content: ''; width:25px; height:29px; background: url("~@/assets/images/mypage/ico-back.png")0 0 no-repeat; background-size: contain; position: absolute; left:20px; top:12px; }
-  .profile-intro .top-btns a.edit { text-decoration: underline; padding-right: 20px; box-sizing: border-box; }
+  .profile-intro { margin-top: 60px; }
   .profile-intro .wrap { padding: 30px 20px; box-sizing: border-box; background: rgba(251,251,251,0.9); }
   .profile-intro .profile { text-align: center; padding: 0 0 10px 0; box-sizing: border-box; }
   .profile-intro .profile .cont-top { padding: 30px 20px 20px 20px; box-sizing: border-box; }

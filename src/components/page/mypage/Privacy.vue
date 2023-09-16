@@ -3,13 +3,15 @@
 
     <div class="dim"></div>
 
-    <section>
+    <div class="top-cont">
       <div class="top-btns type1">
         <RouterLink to="/mypage_main" class="back" >뒤로가기 </RouterLink>
         <h2>개인정보</h2>
         <p class="status-txt">수정 완료</p>
       </div>
+    </div>
 
+    <section class="privacy">
       <div class="wrap">
         <div class="inp-wrap">
           <label>
@@ -106,6 +108,8 @@ export default {
   [privacy] { overflow: hidden; }
   .dim { background: rgba(0,0,0,0.3); position: fixed; left:0; top:0; width:100%; height:100%; opacity: 0; transition: opacity 0.3s; animation-timing-function: ease-out; }
 
+  .top-cont { width: 100%; position: fixed; left:0; top:0; background: #fff; z-index: 1; }
+  .privacy { margin-top: 100px; }
   section { background: #fff; position: relative; }
   .top-btns { height: 100px; border-bottom: 1px solid; border-color: #F5F5F5; position: relative; }
   .top-btns .back { font-size: 0; width:65px; height:53px; display: block; }
@@ -135,7 +139,7 @@ export default {
   .email-edit .inp-wrap label input { font-weight: 400; }
 
   .edit-page { position: fixed; left:0; bottom:0; width:100%; height:100%; z-index: 10; background: #fff; transform: translateY(100%); transition: transform 0.5s; animation-timing-function: ease-out;  border-top-left-radius: 25px; border-top-right-radius: 25px; }
-  .btn-wrap { width: 100%; position: absolute; left:0; bottom: 65px; text-align: center; }
+  .btn-wrap { width: 100%; position: absolute; left:0; bottom: 30px; text-align: center; }
   .btn { font-size: 20px; font-weight: 500; text-align: center; border: 1px solid; border-color: var(--color-main); line-height: 44px; padding: 0 100px; box-sizing: border-box; border-radius: 23px; cursor:pointer; }
   .edit-page.open { transform: translateY(0); }
   .dimOpen .dim { opacity:0.5; z-index: 5; }
