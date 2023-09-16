@@ -294,15 +294,22 @@
       </div>
     </section>
 
-    <div class="edit-page marketing" v-if="active === 'marketing'">
-      <p class="tit">마케팅 알림을 받지 않으실 건가요?</p>
-      <p class="txt">마케팅 정보 수신 시 회원님을 위한 다양한 쿠폰과 포인트를 제공해드립니다.<br>
-        보다 나은 축구 활동을 위해 마케팅 알림을 계속 받아보시는 건 어떨까요?</p>
-      <div class="btns">
-        <a class="not">수신 받지 않기</a>
-        <a class="cancel" @click="active = ''">취소하기</a>
+    <section class="edit-page marketing" :class="{open:isH}">
+      <div class="top-btns type2">
+        <a class="close" @click="isH = false">닫기</a>
       </div>
-    </div>
+      <div class="content-detail">
+        <div class="inner">
+          <p class="tit">마케팅 알림을 받지 않으실 건가요?</p>
+          <p class="txt">마케팅 정보 수신 시 회원님을 위한 다양한 쿠폰과 포인트를 제공해드립니다.<br>
+            보다 나은 축구 활동을 위해 마케팅 알림을 계속 받아보시는 건 어떨까요?</p>
+        </div>
+      </div>
+      <div class="btns">
+        <a class="not" @click="isH = false">수신 받지 않기</a>
+        <a class="cancel" @click="isH = false">취소하기</a>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -336,6 +343,7 @@ export default {
       isE: false,
       isF: false,
       isG: false,
+      isH: false,
       active: 'marketing'
     }
   },
@@ -361,8 +369,18 @@ export default {
           this.active = 'all-off';
         }
       }
-      if(v === 'g1') this.isSwitchG1 = !this.isSwitchG1;
-      if(v === 'g2') this.isSwitchG2 = !this.isSwitchG2;
+      if(v === 'g1') {
+        this.isSwitchG1 = !this.isSwitchG1;
+        if(this.isSwitchG1 === false) {
+          this.isH = true
+        }
+      }
+      if(v === 'g2') {
+        this.isSwitchG2 = !this.isSwitchG2;
+        if(this.isSwitchG2 === false) {
+          this.isH = true
+        }
+      }
     },
     editPageOpen(v) {
       if(v === 'select-a') this.isA = true;
@@ -372,6 +390,7 @@ export default {
       if(v === 'select-e') this.isE = true;
       if(v === 'select-f') this.isF = true;
       if(v === 'select-g') this.isG = true;
+      if(v === 'select-h') this.isH = true;
       this.isDim = true;
     },
     close(v) {
@@ -381,7 +400,7 @@ export default {
       if(v === 'close-d') this.isD = false;
       if(v === 'close-e') this.isE = false;
       if(v === 'close-f') this.isF = false;
-      if(v === 'close-f') this.isG = false;
+      if(v === 'close-g') this.isG = false;
       this.isDim = false;
     },
     allOff() {
@@ -457,4 +476,12 @@ export default {
   .pop .btns a { font-size: 15px; font-weight: 500; width:116px; height: 40px; line-height: 40px; text-align: center; border-radius: 20px; border: 1px solid #D9D9D9; box-sizing: border-box; }
   .pop .btns a.off { border-color:var(--color-main); }
 
+  .marketing { font-size: 16px; font-weight: 500; color:#000; }
+  .marketing .content-detail .inner { padding-top: 0; }
+  .marketing .tit { font-size: 16px; font-weight: 500; margin-bottom: 8px; color:#000; }
+  .marketing .txt { font-size: 15px; line-height: 22px; color:#606060; margin-bottom: 20px; }
+  .marketing .top-btns { border-bottom: none; }
+  .marketing .btns { padding: 0 20px; box-sizing: border-box; }
+  .marketing .btns a { font-size: 15px; font-weight: 500; width:100%; height: 40px; line-height: 40px; text-align: center; border-radius: 20px; border: 1px solid #D9D9D9; box-sizing: border-box; }
+  .marketing .btns a.not { border-color:var(--color-main); margin-bottom: 10px; }
 </style>
