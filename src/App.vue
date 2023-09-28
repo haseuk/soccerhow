@@ -23,7 +23,5 @@
         --color-main : #ff7100;
         color: #101014
     }
-</style>
-<style>
 
 </style>

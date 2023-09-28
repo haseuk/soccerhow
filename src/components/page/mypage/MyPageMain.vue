@@ -66,21 +66,21 @@ export default {
         {img:'c3', tit: '미션'}
       ],
       alarmList: [
-        {tit: '알람', link:'/alarm' },
-        {tit: '채팅', link:'/' }
+        {tit: '알람'},
+        {tit: '채팅'}
       ],
       preferencesList: [
         {tit: '개인정보', link: '/privacy'},
         {tit: '프로필 수정', link: '/profile_edit'},
-        {tit: '로그인/보안', link: ''},
-        {tit: '결제수단 등록', link: ''},
-        {tit: '알림 설정', link: ''}
+        {tit: '로그인/보안', link: '/login'},
+        {tit: '결제수단 등록', link: '/payment'},
+        {tit: '알림 설정', link:'/alarm' }
       ],
       customerList: [
-        {tit: '이벤트', link: ''},
-        {tit: '공지사항', link: ''},
+        {tit: '이벤트', link: '/event'},
+        {tit: '공지사항', link: '/notification'},
         {tit: '피드백/문의', link: ''},
-        {tit: '신고 내역', link: ''},
+        {tit: '신고 내역', link: '/report'},
       ],
 
     }

@@ -257,8 +257,11 @@
           </ul>
         </div>
       </div>
+    </section>
 
-      <div class="pop" v-if="active === 'all-off'">
+    <div class="pop" v-if="active === 'all-off'">
+      <div class="dim"></div>
+      <div class="inner">
         <p class="tit">모든 알림을 꺼둘까요?</p>
         <p class="txt">언제든 다시 켤 수 있으며, 원하는 알림만 켜둘 수도 있습니다. 결제 내용과 같은 중요한 알림은 꼭 켜두는 게 좋아요. </p>
         <div class="btns">
@@ -266,7 +269,7 @@
           <a class="cancel" @click="active = ''">취소하기</a>
         </div>
       </div>
-    </section>
+    </div>
 
     <!--마케팅 정보 수신 동의-->
     <section class="edit-page" :class="{open:isG}">
@@ -469,8 +472,10 @@ export default {
   .content-detail .inner ul li p span { font-size: 12px; color:#606060; display: block; }
   .content-detail .inner ul li p, .content-detail .inner ul li a { vertical-align: middle; }
 
-  .pop { width: 280px; height: 200px; background: #fff; border-radius: 5px; text-align: left; box-shadow: 0 10px 10px 0 rgba(0,0,0,0.5); position: absolute; left:50%; margin-left: -140px; top:50%; margin-top: -100px; padding: 20px; box-sizing: border-box; }
-  .pop .tit { font-size: 16px; font-weight: 500; margin-bottom: 8px; color:#000; }
+  .pop { position: fixed; left:0; top:0; width: 100%; height: 100%; z-index: 10; }
+  .pop .dim { background: rgba(0,0,0,0.3); position: absolute; left:0; top:0; width: 100%; height: 100%; opacity: 1; }
+  .pop .inner { width: 280px; background: #fff; border-radius: 12px; text-align: left; box-shadow: 0 10px 10px 0 rgba(0,0,0,0.5); position: absolute; left:50%; margin-left: -140px; top:50%; margin-top: -100px; padding: 20px; box-sizing: border-box; z-index: 10; }
+  .pop .tit { font-size: 16px; line-height: 23px; font-weight: 500; margin-bottom: 8px; color:#000; }
   .pop .txt { font-size: 15px; line-height: 22px; color:#606060; margin-bottom: 20px; }
   .pop .btns { display: flex; justify-content: space-between; }
   .pop .btns a { font-size: 15px; font-weight: 500; width:116px; height: 40px; line-height: 40px; text-align: center; border-radius: 20px; border: 1px solid #D9D9D9; box-sizing: border-box; }

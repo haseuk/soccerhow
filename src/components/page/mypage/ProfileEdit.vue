@@ -123,7 +123,8 @@
 
 
     <!--나이대-->
-    <section class="edit-page" :class="{open:isSelect}">
+    <!--09.23 age-edit 추가-->
+    <section class="edit-page age-edit" :class="{open:isSelect}">
       <div class="top-btns type1">
         <a class="close" @click="close('select-age')">닫기</a>
         <h3>회원님의 나이대를 알려주세요</h3>
@@ -643,7 +644,9 @@ export default {
   .content-detail .inner span { font-size: 14px; line-height: 20px; font-weight: 500; color: #808080; }
   .sub-txt { font-size: 16px; font-weight: 500; text-align: left; }
 
-  .foot ul { text-align: center; }
+  .foot ul { max-height: none; overflow: hidden; }/*09.23 수정*/
+  .age-edit ul { margin-bottom: 0; max-height: none; overflow: hidden; }/*09.23 수정*/
+
   .foot ul li { width: 50%; display: inline-block; vertical-align: top; text-align: center; }
   .foot ul li span { color:var(--color-main); display: block; margin-bottom: 16px; }
   .foot ul li label input[type=checkbox] + i { width:70px; height:135px; display: inline-block; cursor: pointer; border: none; border-radius: unset; margin: 0; position: relative; }
