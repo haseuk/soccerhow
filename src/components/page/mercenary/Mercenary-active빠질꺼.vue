@@ -233,7 +233,7 @@ export default {
   .list-wrap li .thumb { width: 150px; height: 200px; border-radius: 10px; overflow: hidden; box-shadow: 0 0 5px 0 rgba(0,0,0,0.3); position: relative; }
   .list-wrap li .thumb img { height: 100%; position: absolute; left:50%; top:50%; transform: translate(-50%,-50%); }
   .list-wrap li .info { margin-left: 6%; text-align: left; width: auto; padding-top: 5px; box-sizing: border-box; }
-  .list-wrap li .info p { font-size: 14px; line-height: 20px; font-weight: 500; padding-left: 26px; box-sizing: border-box; color: #606060; position: relative; }
+  .list-wrap li .info p { font-size: 14px; line-height: 20px; font-weight: 500; padding-left: 30px; box-sizing: border-box; color: #606060; position: relative; }
   .list-wrap li .info p:last-child { margin-bottom: 0; }
   .list-wrap li .info p.nick { font-size: 14px; line-height: 17px; font-weight: 700; color:#101014; padding-left: 0; }
   .list-wrap li .info p.nick span { font-size: 11px; font-weight: 900; color:#808080; }

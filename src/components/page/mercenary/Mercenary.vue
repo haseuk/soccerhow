@@ -18,7 +18,7 @@
 
       <div class="view-set">
         <a class="btn filter" @click="editPageOpen('filter')">필터</a>
-        <a class="btn full-view" :class="{on:fullViewOn}" @click="fullView">전체보기</a>
+        <a class="btn full-view" @click="fullView">전체보기</a>
       </div>
     </div>
 
@@ -45,7 +45,7 @@
           <div class="marker coach" style="position: absolute; left:200px;top:320px;">
             <div class="thumb"><i><img :src="require(`@/assets/images/mercenary/marker5.png`)" alt=""></i></div>
           </div>
-          <a class="btn location" :class="{on:fullViewOn}" :style="`top:${this.winH - 150 - 138 - 50}px`">현재위치</a>
+          <a class="btn location" :style="`top:${this.winH - 150 - 138 - 50}px`">현재위치</a>
         </div>
         <!--map api 연동부분-->
 

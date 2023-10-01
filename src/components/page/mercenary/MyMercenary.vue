@@ -5,7 +5,7 @@
 
     <div class="top-cont">
       <div class="top-btns">
-        <RouterLink to="/" class="back" >뒤로가기 </RouterLink>
+        <RouterLink to="" class="back" >뒤로가기 </RouterLink>
         <h2>내 용병</h2>
         <a class="btn alarm"></a>
       </div>

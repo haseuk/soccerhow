@@ -22,7 +22,7 @@
           <div class="mercenary-list list">
             <ul :style="`height:${this.winH - 187}px`">
               <li v-for="(item,i) in mercenaryLlist" :key="i">
-                <RouterLink to="/schedule-mercenary"></RouterLink>
+                <RouterLink to="/mercenary_complete"></RouterLink>
                 <p class="tit">{{item.tit}}</p>
                 <p class="date">{{item.date}}</p>
                 <div class="type-wrap">
@@ -35,7 +35,7 @@
           <div class="scout-list list">
             <ul :style="`height:${this.winH - 187}px`">
               <li v-for="(item,i) in scoutList" :key="i">
-                <RouterLink to="/schedule-scout"></RouterLink>
+                <RouterLink to="/scout_complete"></RouterLink>
                 <p class="tit">{{item.tit}}</p>
                 <p class="date">{{item.date}}</p>
                 <div class="type-wrap">

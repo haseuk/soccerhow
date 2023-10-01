@@ -21,6 +21,11 @@ import MercenaryProposal from "@/components/page/mercenary/MercenaryProposal";
 import MercenaryApply from "@/components/page/mercenary/MercenaryApply";
 import MercenaryRecord from "@/components/page/mercenary/MercenaryRecord";
 import ScheduleFind from "@/components/page/mercenary/ScheduleFind";
+import mercenaryComplete from "@/components/page/mercenary/mercenaryComplete";
+import scoutComplete from "@/components/page/mercenary/scoutComplete";
+import OfferMembers from "@/components/page/mercenary/OfferMembers";
+import MemberApplies from "@/components/page/mercenary/MemberApplies";
+import OfferCoach from "@/components/page/mercenary/OfferCoach";
 
 const router = new VueRouter({
     mode: 'history',
@@ -45,8 +50,13 @@ const router = new VueRouter({
         {path : '/my_mercenary', component : MyMercenary},
         {path : '/mercenary_proposal', component : MercenaryProposal},
         {path : '/mercenary_apply', component : MercenaryApply},
-        {path : '/mercenary_reocrd', component : MercenaryRecord},
-        {path : '/schedule_find', component : ScheduleFind},
+        {path : '/mercenary_reocrd', component : MercenaryRecord}, //내 용병 - 용병 기록
+        {path : '/schedule_find', component : ScheduleFind}, //스케줄 찾기
+        {path : '/mercenary_complete', component : mercenaryComplete}, //용병 활동 - 용병 완료
+        {path : '/scout_complete', component : scoutComplete}, //스카웃 활동 - 완료
+        {path : '/offer_members', component : OfferMembers}, //회원한테 용병 제안
+        {path : '/member_applies', component : MemberApplies}, //회원이 용병 신청
+        {path : '/offer_coach', component : OfferCoach}, //코치한테 용병 제안
     ]
 });
 
